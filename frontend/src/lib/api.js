@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend URL
+  // Vite will use the live URL on Vercel, and localhost on your computer
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api', 
 });
 
 export default api;
