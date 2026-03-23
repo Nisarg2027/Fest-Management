@@ -8,19 +8,12 @@ const app = express();
 // The VIP List: Only these URLs are allowed to ask your backend for data
 const allowedOrigins = [
   'http://localhost:5173', // Your local React testing server
-  'https://fest-management-eight.vercel.app' // Your live Vercel app
+  'https://fest-management-eight.vercel.app', // Your live Vercel app
+  /\.vercel\.app$/
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+  origin: '*', // Allows absolutely any website to talk to your backend
 }));
 
 app.use(express.json());
